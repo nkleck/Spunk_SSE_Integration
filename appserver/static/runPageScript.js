@@ -50,7 +50,7 @@ console.log(show_name)
 require(
     [
         'jquery'
-        //Splunk.util.make_full_url('/static/app/' + appName + '/components/controls/ProcessSummaryUI_SSOC.js')
+        //Splunk.util.make_full_url('/static/app/' + appName + '/components/controls/ProcessSummaryUI.js')
     ],
     function(
         $
@@ -149,10 +149,10 @@ require(
                     // console.log(myshowcaseinfo)
                     // console.log(ourStories)
 
-                    // send the data to the ProcessSummaryUI_SSOC script to build the page
+                    // send the data to the ProcessSummaryUI script to build the page
                     require(["jquery",
                              "underscore",
-                             Splunk.util.make_full_url('/static/app/' + appName + '/components/controls/ProcessSummaryUI_SSOC.js')
+                             Splunk.util.make_full_url('/static/app/' + appName + '/components/controls/ProcessSummaryUI.js')
                              // may need more stuff here
                              // "splunkjs/mvc",
                              // "splunkjs/mvc/utils",

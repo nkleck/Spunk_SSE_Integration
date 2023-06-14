@@ -5,7 +5,7 @@ This repo contains js and css files that will pull the showcase and mitre inform
 
 In order for this scrip to work you need to do the following:
 1. Name your dashboard in the same format as the SSEShowcaseInfo json. For instnace: basic_scanning
-2. Add `<form version="1.1" script="runPageScript_SSOC.js" stylesheet="ssoc_sse.css">` to the top of the dashboard page
+2. Add `<form version="1.1" script="runPageScript.js" stylesheet="sse.css">` to the top of the dashboard page
 3. Add an empty row containg a html tag below your panels. `<row><html></html></row>` 
 
 

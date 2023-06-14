@@ -35,7 +35,7 @@ define([
     SavedSearchSelectorModal
 ) {
 
-    // console.log("Hello from ProcessSummaryUI_SSOC.js")
+    // console.log("Hello from ProcessSummaryUI.js")
     return {
 
         GenerateShowcaseHTMLBody: function GenerateShowcaseHTMLBody(myshowcaseinfo, ourStories) {
