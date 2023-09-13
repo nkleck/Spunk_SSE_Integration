@@ -8,7 +8,8 @@ define([
     'jquery',
     'underscore',
     'module',
-    'bootstrap.popover',
+    // 'bootstrap.popover',
+    Splunk.util.make_full_url('/static/app/' + appName + '/components/controls/bootstrap.bundle.js'),
     'splunkjs/mvc',
     "splunkjs/mvc/searchmanager",
     "splunkjs/mvc/simplexml/element/chart",
@@ -35,7 +36,7 @@ define([
     SavedSearchSelectorModal
 ) {
 
-    // console.log("Hello from ProcessSummaryUI.js")
+    // console.log("Hello from ProcessSummaryUI_SSOC.js")
     return {
 
         GenerateShowcaseHTMLBody: function GenerateShowcaseHTMLBody(myshowcaseinfo, ourStories) {
@@ -195,15 +196,15 @@ define([
                     alertVolumeText = "<h2>" + "Alert Volume" + "</h2>"
                     // build span body and popover
                     if (myshowcaseinfo['alertvolume'] == "Very Low" || myshowcaseinfo['description'].match(/<b>\s*Alert Volume:*\s*<\/b>:*\s*Very Low/)) {
-                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Very Low" data-content="An alert volume of Very Low indicates that a typical environment will rarely see alerts from this search, maybe after a brief period of tuning. This search should trigger infrequently enough that you could send it directly to the SOC as an alert, although you should also send it into a data-analysis based threat detection solution, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Very Low" + '</span>'
+                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Very Low" data-bs-content="An alert volume of Very Low indicates that a typical environment will rarely see alerts from this search, maybe after a brief period of tuning. This search should trigger infrequently enough that you could send it directly to the SOC as an alert, although you should also send it into a data-analysis based threat detection solution, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Very Low" + '</span>'
                     } else if (myshowcaseinfo['alertvolume'] == "Low" || myshowcaseinfo['description'].match(/<b>\s*Alert Volume:*\s*<\/b>:*\s*Low/)) {
-                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Low" data-content="An alert volume of Low indicates that a typical environment will occasionally see alerts from this search -- probably 0-1 alerts per week, maybe after a brief period of tuning. This search should trigger infrequently enough that you could send it directly to the SOC as an alert if you decide it is relevant to your risk profile, although you should also send it into a data-analysis based threat detection solution, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Low" + '</span>'
+                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Low" data-bs-content="An alert volume of Low indicates that a typical environment will occasionally see alerts from this search -- probably 0-1 alerts per week, maybe after a brief period of tuning. This search should trigger infrequently enough that you could send it directly to the SOC as an alert if you decide it is relevant to your risk profile, although you should also send it into a data-analysis based threat detection solution, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Low" + '</span>'
                     } else if (myshowcaseinfo['alertvolume'] == "Medium" || myshowcaseinfo['description'].match(/<b>\s*Alert Volume:*\s*<\/b>:*\s*Medium/)) {
-                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover"  data-original-title="Alert Volume: Medium" data-content="An alert volume of Medium indicates that you\'re likely to see one to two alerts per day in a typical organization, though this can vary substantially from one organization to another. It is recommended that you feed these to an anomaly aggregation technology, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Medium" + '</span>'
+                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover"  data-original-title="Alert Volume: Medium" data-bs-content="An alert volume of Medium indicates that you\'re likely to see one to two alerts per day in a typical organization, though this can vary substantially from one organization to another. It is recommended that you feed these to an anomaly aggregation technology, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "Medium" + '</span>'
                     } else if (myshowcaseinfo['alertvolume'] == "High" || myshowcaseinfo['description'].match(/<b>\s*Alert Volume:*\s*<\/b>:*\s*High/)) {
-                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: High" data-content="An alert volume of High indicates that you\'re likely to see several alerts per day in a typical organization, though this can vary substantially from one organization to another. It is highly recommended that you feed these to an anomaly aggregation technology, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "High" + '</span>'
+                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: High" data-bs-content="An alert volume of High indicates that you\'re likely to see several alerts per day in a typical organization, though this can vary substantially from one organization to another. It is highly recommended that you feed these to an anomaly aggregation technology, such as Splunk UBA (or as a starting point, Splunk ES\'s Risk Framework)">' + "High" + '</span>'
                     } else if (myshowcaseinfo['alertvolume'] == "Very High" || myshowcaseinfo['description'].match(/<b>\s*Alert Volume:*\s*<\/b>:*\s*Very High/)) {
-                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Very High" data-content="An alert volume of Very High indicates that you\'re likely to see many alerts per day in a typical organization. You need a well thought out high volume indicator search to get value from this alert volume. Splunk ES\'s Risk Framework is a starting point, but is probably insufficient given how common these events are. It is highly recommended that you either build correlation searches based on the output of this search, or leverage Splunk UBA with it\'s threat models to surface the high risk indicators.">' + "Very High" + '</span>'
+                        alertVolumeText += '<span class="dvPopover popoverlink" id="alertVolumetooltip" title="" data-placement="right" data-toggle="popover" data-trigger="hover" data-original-title="Alert Volume: Very High" data-bs-content="An alert volume of Very High indicates that you\'re likely to see many alerts per day in a typical organization. You need a well thought out high volume indicator search to get value from this alert volume. Splunk ES\'s Risk Framework is a starting point, but is probably insufficient given how common these events are. It is highly recommended that you either build correlation searches based on the output of this search, or leverage Splunk UBA with it\'s threat models to surface the high risk indicators.">' + "Very High" + '</span>'
                     } else {
                         console.log("Probably an error in grabbing the alert volume. Should be present.")
                     }
@@ -224,7 +225,7 @@ define([
                         var analytic_story_narrative = ourStories[i]['narrative']
                         // build the content in for the span
                         let content = "<h3>Description</h3><p>" + analytic_story_description.replace(/'/g, "").replace(/\n/g, "<br\>") + "</p>" + "<h3>Narrative</h3><p>" + analytic_story_narrative.replace(/'/g, "").replace(/\n/g, "<br\>").replace(/\\/g, "") + "</p>"
-                        analytic_story_links.push("<span class='whatsthis analytic_story' data-toggle='popover' data-trigger='hover' data-placement='right' data-placement='right' data-html='true' title='" + analytic_story_name + "' data-content='" + content + "'>" + analytic_story_name + "</span>")
+                        analytic_story_links.push("<span class='whatsthis analytic_story' data-toggle='popover' data-trigger='hover' data-placement='right' data-placement='right' data-html='true' title='" + analytic_story_name + "' data-bs-content='" + content + "'>" + analytic_story_name + "</span>")
                     }
                     analytic_stories += analytic_story_links.join(", ")
                 }
